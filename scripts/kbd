@@ -1,0 +1,15 @@
+#!/bin/bash
+
+KDB=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+set_keyboard(){
+	if [ $KDB == "us" ]
+	then
+		setxkbmap cz\(qwerty\)
+	else
+		setxkbmap us
+	fi
+}
+
+set_keyboard
+setxkbmap -query | grep layout | awk '{print $2}'
