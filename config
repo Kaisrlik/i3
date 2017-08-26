@@ -8,7 +8,6 @@ set $mod Mod1
 #font pango:monospace 8
 font pango:System San Francisco Display 8
 
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -42,6 +41,9 @@ bindsym $mod+Return exec xterm -fg white -bg black
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# mouse will no longer change focus when pointing on a window
+# focus_follows_mouse no
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 bindsym $mod+f2 exec dmenu_run
@@ -55,10 +57,10 @@ bindsym $mod+shift+x exec i3lock --color "#000000"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -96,8 +98,6 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-
-
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
@@ -205,3 +205,21 @@ bar {
 #		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 #	}
 }
+
+# bind audio
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 5%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 5%+
+bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym $mod+F6 exec --no-startup-id amixer set 'Master' 5%-
+bindsym $mod+F7 exec --no-startup-id amixer set 'Master' 5%+
+
+# bind video
+bindsym XF86MonBrightnessDown exec -no-startup-id ~/.config/i3/scripts/brightness -
+bindsym XF86MonBrightnessUp exec -no-startup-id ~/.config/i3/scripts/brightness +
+bindsym $mod+F1 exec -no-startup-id ~/.config/i3/scripts/brightness -
+bindsym $mod+F2  exec -no-startup-id ~/.config/i3/scripts/brightness +
+
+# kbd
+exec --no-startup-id "setxkbmap us"
+bindsym $mod+F3 exec --no-startup-id ~/.config/i3/scripts/kdb
