@@ -12,4 +12,8 @@ set_keyboard(){
 }
 
 set_keyboard
+#	notify-send -u low -i mouse "KBD layout changed";
+
+#pkill -RTMIN+2 i3blocks
+
 setxkbmap -query | grep layout | awk '{print $2}'

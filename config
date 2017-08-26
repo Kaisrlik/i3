@@ -218,5 +218,5 @@ bindsym $mod+F1 exec -no-startup-id ~/.config/i3/scripts/brightness -
 bindsym $mod+F3  exec -no-startup-id ~/.config/i3/scripts/brightness +
 
 # kbd
-exec --no-startup-id "setxkbmap us"
-bindsym $mod+F4 exec --no-startup-id ~/.config/i3/scripts/kdb
+exec --no-startup-id "setxkbmap cz\(qwerty\)"
+bindsym $mod+F4 exec --no-startup-id pkill -RTMIN+2 i3blocks
