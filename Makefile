@@ -6,5 +6,7 @@ install:
 	touch ~/.config/i3
 	ln -sf $(CURDIR) ~/.config/i3
 
-install_dep:
+download:
+
+packages:
 	sudo apt-get install i3 i3blocks
