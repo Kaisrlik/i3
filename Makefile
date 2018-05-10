@@ -9,4 +9,4 @@ install:
 download:
 
 packages:
-	sudo apt-get install i3 i3blocks
+	sudo apt-get install i3 i3blocks libnotify-bin
