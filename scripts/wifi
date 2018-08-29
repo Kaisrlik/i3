@@ -16,7 +16,7 @@
 
 #------------------------------------------------------------------------
 
-INTERFACE="${BLOCK_INSTANCE:-wlan0}"
+INTERFACE="${BLOCK_INSTANCE:-wlp2s0}"
 
 #------------------------------------------------------------------------
 
@@ -34,12 +34,13 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 echo $QUALITY% # full text
 echo $QUALITY% # short text
 
+# color
 if [[ $QUALITY -ge 80 ]]; then
-    echo "#005500"
+    echo "#00FF00"
 elif [[ $QUALITY -lt 80 ]]; then
-    echo "#555600"
+    echo "#FFF600"
 elif [[ $QUALITY -lt 60 ]]; then
-    echo "#553E00"
+    echo "#FFAE00"
 elif [[ $QUALITY -lt 40 ]]; then
-    echo "#550000"
+    echo "#FF0000"
 fi

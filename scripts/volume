@@ -67,4 +67,21 @@ case $BLOCK_BUTTON in
   5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
 esac
 
-volume | format
+VOLUME=$(volume | format)
+
+if [[ "$VOLUME" == "MUTE" ]]; then
+	echo 🔇: MUTE
+	exit 0
+fi
+
+VOLUME=${VOLUME::-1}
+
+if [[ $VOLUME -gt 70 ]]; then
+	echo 🔊: $VOLUME%
+else
+	if [[ $VOLUME -gt 40 ]]; then
+		echo 🔉: $VOLUME%
+	else
+		echo 🔈: $VOLUME%
+	fi
+fi
