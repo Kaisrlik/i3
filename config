@@ -158,8 +158,13 @@ bindsym $mod+F7 exec --no-startup-id amixer set 'Master' 5%+
 #assign aplication to workspace
 #xprop classof plication
 #assign [class="Rhythmbox"] $workspace10
-assign [class="xps"] $workspace3
-workspace 2 output HDMI3
+assign [class="xps"] $workspace1
+workspace 1 output HDMI3
+
+assign [class="slack|Slack"] $workspace10
+exec --no-startup-id /usr/bin/slack
+#assign [class="chromium|Chromium"] $workspace2
+#exec --no-startup-id /usr/bin/chromium
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
