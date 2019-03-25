@@ -155,9 +155,7 @@ bindsym $mod+F7 exec --no-startup-id "amixer set 'Master' 5%+; pkill -RTMIN+10 i
 
 #assign aplication to workspace
 #xprop classof plication
-#assign [class="Rhythmbox"] $workspace10
 assign [class="xps"] $workspace1
-workspace 1 output HDMI3
 
 assign [class="spotify"] $workspace9
 assign [class="slack|Slack"] $workspace10
@@ -224,3 +222,11 @@ bindsym $mod+F3  exec -no-startup-id ~/.config/i3/scripts/brightness +
 # kbd
 exec --no-startup-id "setxkbmap cz\(qwerty\)"
 bindsym $mod+F4 exec --no-startup-id pkill -RTMIN+2 i3blocks
+
+### assigment of workspace to monitors
+workspace $workspace1 output DP-1-2
+workspace $workspace3 output DP-1-2
+workspace $workspace4 output DP-1-2
+workspace $workspace5 output DP-1-2
+workspace $workspace9 output DP-1-2
+workspace $workspace10 output DP-1-2
