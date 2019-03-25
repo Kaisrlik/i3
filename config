@@ -114,8 +114,8 @@ set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7 &#xf068;"
 set $workspace8 "8 &#xf115;"
-set $workspace9 "9"
-set $workspace10 "10 &#xf001;" 
+set $workspace9 "9:🎶"
+set $workspace10 "10:💬"
 #cheatsheet Font-awesome google-it #cpy awsomefonts.tiff to ~/.fonts
 
 # switch to workspace
@@ -160,6 +160,7 @@ bindsym $mod+F7 exec --no-startup-id "amixer set 'Master' 5%+; pkill -RTMIN+10 i
 assign [class="xps"] $workspace1
 workspace 1 output HDMI3
 
+assign [class="spotify"] $workspace9
 assign [class="slack|Slack"] $workspace10
 exec --no-startup-id /usr/bin/slack
 #assign [class="chromium|Chromium"] $workspace2
