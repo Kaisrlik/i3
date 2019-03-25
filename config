@@ -144,8 +144,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 
 #sounds
-#set $sink `pactl list short sinks | grep RUNNING | cut -f1`
-set $sink 0 
+set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -- -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
