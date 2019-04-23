@@ -1,0 +1,78 @@
+#!/bin/bash
+
+_play() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
+}
+
+_pause() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+}
+
+_playpause() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+}
+
+_previous() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+}
+
+_next() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+}
+
+_get_status() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+		string:'org.mpris.MediaPlayer2.Player' string:'Metadata'
+}
+
+_get_artist() {
+	_get_status | grep artist -A2 | tail -n1 | awk -F\" {'print $2'}
+}
+
+_get_title() {
+	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'}
+}
+
+usage() {
+    echo "usage: $0 [-vhatnprcs]"
+    echo "  -v,--verbose      verbose output"
+    echo "  -h,--help         display help"
+    echo "  -a,--artist       display current artist"
+    echo "  -t,--title        display current song title"
+    echo "  -n,--next         next song"
+    echo "  -p,--previous     previous song"
+    echo "  -r,--run          play a song"
+    echo "  -c,--toggle       play/pause a song"
+    echo "  -s,--stop         pause a song"
+    exit 1
+}
+
+TEMP=`getopt -o vhatnprcs --long verbose,help,artist,title,next,previous,run,toggle,stop \
+	-n "$0" -- "$@"`
+
+eval set -- "$TEMP"
+
+VERBOSE=false
+while true; do
+  case "$1" in
+    -v | --verbose ) VERBOSE=true; shift ;;
+    -h | --help ) usage; exit 1;;
+    -a | --artist ) _get_artist; shift ;;
+    -t | --title ) _get_title; shift ;;
+    -n | --next ) _next; shift ;;
+    -p | --previous ) _previous; shift ;;
+    -r | --run ) _play; shift ;;
+    -c | --toggle ) _playpause; shift ;;
+    -s | --stop ) _pause; shift ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+${VERBOSE} && set -x
