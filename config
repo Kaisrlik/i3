@@ -139,15 +139,17 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-#assign aplication to workspace
-#xprop classof plication
+# assign aplication to workspace
+# To find class of application use *xprop*
 assign [class="xps"] $workspace1
 
-assign [class="spotify"] $workspace9
-assign [class="slack|Slack"] $workspace10
+exec --no-startup-id /usr/bin/nm-applet
+assign [class="Spotify"] $workspace9
+exec --no-startup-id /usr/bin/spotify
+assign [class="Slack"] $workspace10
 exec --no-startup-id /usr/bin/slack
-#assign [class="chromium|Chromium"] $workspace2
-#exec --no-startup-id /usr/bin/chromium
+assign [class="Firefox|chromium|Chromium"] $workspace2
+exec --no-startup-id /usr/bin/firefox
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -215,5 +217,6 @@ workspace $workspace1 output DP-1-2
 workspace $workspace3 output DP-1-2
 workspace $workspace4 output DP-1-2
 workspace $workspace5 output DP-1-2
+workspace $workspace6 output DP-1-2
 workspace $workspace9 output DP-1-2
 workspace $workspace10 output DP-1-2
