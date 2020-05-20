@@ -17,11 +17,11 @@ _playback_status() {
 get_playback_status() {
 	STATUS=$(_playback_status | tail -n1 | awk -F\" {'print $2'})
 	if [[ "${STATUS}" == "Playing" ]]; then
-		echo "▶"
+		echo "▮▮"
 		return
 	fi
 	if [[ "${STATUS}" == "Paused" ]]; then
-		echo "▮▮"
+		echo "▶"
 		return
 	fi
 	echo "■"
