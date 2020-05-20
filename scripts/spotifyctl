@@ -1,4 +1,12 @@
 #!/bin/bash
+# mpris api : https://specifications.freedesktop.org/mpris-spec/2.2/Player_Interface.html
+
+# not implemented by spotify app
+_position() {
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+		/org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+		string:'org.mpris.MediaPlayer2.Player' string:'Position'
+}
 
 _play() {
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
@@ -32,11 +40,11 @@ _get_status() {
 }
 
 _get_artist() {
-	_get_status | grep artist -A2 | tail -n1 | awk -F\" {'print $2'}
+	_get_status | grep artist -A2 | tail -n1 | awk -F\" {'print $2'} | xargs echo -n ""
 }
 
 _get_title() {
-	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'}
+	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'} | xargs echo -n " "
 }
 
 usage() {
@@ -76,3 +84,5 @@ while true; do
 done
 
 ${VERBOSE} && set -x
+
+exit 0
