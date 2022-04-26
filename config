@@ -30,11 +30,11 @@ floating_modifier $mod
 #client.focused		$bg-color		$bg-color          $text-color          #00ff00
 #client.unfocused	$inactive-bg-color	$inactive-bg-color $inactive-text-color #00ff00
 #client.focused_inactive	$inactive-bg-color	$inactive-bg-color $inactive-text-color #00ff00
-client.urgent		$urgent-bg-color	$urgent-bg-color   $text-color          #00ff00
+# client.urgent		$urgent-bg-color	$urgent-bg-color   $text-color          #00ff00
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec xterm -fg white -bg black
+bindsym $mod+Return exec foot
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -210,8 +210,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume $sink -
 bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle; pkill -RTMIN+10 i3blocks"
 
 # kbd
-exec --no-startup-id "setxkbmap cz\(qwerty\)"
+# exec --no-startup-id "setxkbmap cz\(qwerty\)"
 bindsym $mod+F4 exec --no-startup-id pkill -RTMIN+2 i3blocks
+
+# set output
+output Virtual-1 pos 0 0 res 1920x1080
 
 ### assigment of workspace to monitors
 workspace $workspace1 output DP-1-2

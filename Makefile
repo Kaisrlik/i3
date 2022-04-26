@@ -9,4 +9,4 @@ install:
 download:
 
 packages:
-	sudo apt-get install i3 i3blocks libnotify-bin i3lock
+	sudo apt-get install sway i3blocks libnotify-bin swaylock
