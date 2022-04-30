@@ -1,5 +1,27 @@
 #!/bin/bash
 
+notify() {
+	brightness=$(bc <<< "$1 * 100/5")
+	icon="preferences-system-brightness-lock"
+	bar="$(seq -s "─" 0 ${brightness} | sed 's/[0-9]//g')$(seq -s " " ${brightness} 20 | sed 's/[0-9]//g')"
+
+	st=$(echo "1 < $BRIGHTNESS" | bc)
+	if [ "$st" -eq 1 ]; then
+		dunstify -a "changeBrightness" -u low -i ${icon} \
+			-h string:x-dunst-stack-tag:mybrightness "Brightness on MAX"
+		exit 0
+	fi
+	st=$(echo "0.1 > $BRIGHTNESS" | bc)
+	if [ "$st" -eq 1 ]; then
+		dunstify -a "changeBrightness" -u low -i ${icon} \
+			-h string:x-dunst-stack-tag:mybrightness "Brightness on MIN"
+		exit 0
+	fi
+
+	dunstify -a "changeBrightness" -u low -i ${icon} \
+		-h string:x-dunst-stack-tag:mybrightness Brightness "   |${bar}|"
+}
+
 DIFF=0.1
 
 # find the id of my the touchpad
@@ -11,27 +33,17 @@ if [ $# -eq 0 ]; then
 else
 	# increase brightness
 	if [ "$1" = "+" ]; then
-		BRIGHTNESS=$(echo $BRIGHTNESS + $DIFF | bc )
+		BRIGHTNESS=$(echo "$BRIGHTNESS" + $DIFF | bc)
 	# decrease brightness
 	elif [ "$1" = "-" ]; then
-		BRIGHTNESS=$(echo $BRIGHTNESS - $DIFF | bc )
+		BRIGHTNESS=$(echo "$BRIGHTNESS" - $DIFF | bc)
 	else
 		echo "Uknown opperation"
 		exit 1
 	fi
 fi
 
-st=$(echo "1 < $BRIGHTNESS" | bc)
-if [ $st -eq 1 ]; then
-	notify-send -u low -i mouse "Brightness on MAX"
-	exit 0
-fi
-st=$(echo "0.1 > $BRIGHTNESS" | bc)
-if [ $st -eq 1 ]; then
-	notify-send -u low -i mouse "Brightness on MIN"
-	exit 0
-fi
-
+notify "${BRIGHTNESS}"
 for i in $(xrandr | grep -w connected | awk '{print $1}' | xargs); do
-	xrandr --output $i --brightness $BRIGHTNESS
+	xrandr --output "$i" --brightness "$BRIGHTNESS"
 done
