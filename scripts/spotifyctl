@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # mpris api : https://specifications.freedesktop.org/mpris-spec/2.2/Player_Interface.html
 
 # not implemented by spotify app
