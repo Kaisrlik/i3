@@ -75,7 +75,7 @@ _get_artist() {
 }
 
 _get_title() {
-	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'} | xargs echo -n " :"
+	_get_status | grep title -A1 | tail -n1 | awk -F\" {'print $2'} | xargs echo " :"
 }
 
 usage() {
