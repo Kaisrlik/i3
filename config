@@ -24,8 +24,8 @@ bindsym $mod+Shift+q kill
 # mouse will no longer change focus when pointing on a window
 # focus_follows_mouse no
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu-wl_run
+# start a program launcher
+bindsym $mod+d exec bemenu-run --no-exec --fn "Ubuntu 16" -p ">>" --tf "#18b218" --hf "#3daee9" --sf "#3daee9" --scf "#3daee9" | xargs swaymsg exec --
 
 # lockscreen
 bindsym $mod+shift+x exec swaylock --color "#000000"
@@ -84,7 +84,6 @@ set $workspace7 "7 &#xf068;"
 set $workspace8 "8 &#xf115;"
 set $workspace9 "9:🎶"
 set $workspace10 "10:💬"
-#cheatsheet Font-awesome google-it #cpy awsomefonts.tiff to ~/.fonts
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
