@@ -168,7 +168,10 @@ bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute $sink toggle; pk
 bindsym $mod+F4 exec --no-startup-id pkill -RTMIN+2 i3blocks
 
 # set output
-output Virtual-1 pos 0 0 res 1920x1080
+output DP-2 {
+	mode 3840x2160@30.000Hz
+	# mode 2560x1440@59.951Hz
+}
 
 ### assigment of workspace to monitors
 workspace $workspace1 output DP-1-2
@@ -197,5 +200,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 #input
 input * xkb_layout "us"
+
 # Make Caps Lock an additional Esc
-input * xkb_options "caps:escape"
+input type:keyboard {
+	xkb_options caps:escape
+}
