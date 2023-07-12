@@ -7,19 +7,16 @@ notify() {
 
 	st=$(echo "1 < $BRIGHTNESS" | bc)
 	if [ "$st" -eq 1 ]; then
-		dunstify -a "changeBrightness" -u low -i ${icon} \
-			-h string:x-dunst-stack-tag:mybrightness "Brightness on MAX"
+		notify-send -a "changeBrightness" -u low -i ${icon} "Brightness on MAX"
 		exit 0
 	fi
 	st=$(echo "0.1 > $BRIGHTNESS" | bc)
 	if [ "$st" -eq 1 ]; then
-		dunstify -a "changeBrightness" -u low -i ${icon} \
-			-h string:x-dunst-stack-tag:mybrightness "Brightness on MIN"
+		notify-send -a "changeBrightness" -u low -i ${icon} "Brightness on MIN"
 		exit 0
 	fi
 
-	dunstify -a "changeBrightness" -u low -i ${icon} \
-		-h string:x-dunst-stack-tag:mybrightness Brightness "   |${bar}|"
+	notify-send -a "changeBrightness" -u low -i ${icon} Brightness "   |${bar}|"
 }
 
 DIFF=0.1

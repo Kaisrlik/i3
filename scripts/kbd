@@ -14,8 +14,7 @@ usage() {
 notify() {
 	icon="preferences-system-brightness-lock"
 
-	dunstify -a "changeKeyboard" -u low -i ${icon} \
-		-h string:x-dunst-stack-tag:changekeyboard "${1}"
+	notify-send --urgency=low -t 6000 -a "changeKeyboard" -i ${icon} "${1}"
 }
 
 set_keyboard_layout(){
