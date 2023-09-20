@@ -1,4 +1,4 @@
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -190,7 +190,7 @@ exec swayidle -w \
 	before-sleep 'swaylock -f -c 000000'
 
 # start notification daemon
-exec mako
+exec mako --default-timeout 5000
 # Sway users might achieve this by adding the following to their Sway config file
 # This ensures all user units started after the command (not those already running) set the variables
 exec systemctl --user import-environment
